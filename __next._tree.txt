@@ -1,3 +1,3 @@
 :HL["/new_Skape/_next/static/chunks/132dd8tpgvyj7.css","style"]
 :HL["https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"MXmLh7EqyE2Q3vTIfPItp"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"YeDnKGxHz3HtRXA-3zErf"}
