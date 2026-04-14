@@ -114,10 +114,389 @@
     }
 }
 
+/* Service Cards Animations */
+.service-card {
+    animation: cardFadeInUp 0.8s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+}
+
+.service-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.service-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.service-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.service-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.service-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.service-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+@keyframes cardFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button Animations */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-primary {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5);
+}
+
+.btn-primary:hover {
+    animation: buttonPulse 0.6s ease-out;
+}
+
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+/* Hero Section Animations */
+.hero-copy {
+    animation: heroFadeInLeft 0.9s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+}
+
+.hero-copy h1 {
+    animation: textGlide 1s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+    animation-delay: 0.15s;
+}
+
+.hero-copy p {
+    animation: textGlide 1s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+}
+
+.hero-copy p:nth-of-type(2) {
+    animation-delay: 0.2s;
+}
+
+.hero-actions {
+    animation: textGlide 1s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+    animation-delay: 0.25s;
+}
+
+@keyframes heroFadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes textGlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Service Icon Animation */
+.service-icon {
+    display: inline-block;
+    animation: iconFloat 3s cubic-bezier(0.4, 0.1, 0.4, 0.9) infinite;
+}
+
+.service-card:nth-child(1) .service-icon {
+    animation-delay: 0s;
+}
+
+.service-card:nth-child(2) .service-icon {
+    animation-delay: 0.2s;
+}
+
+.service-card:nth-child(3) .service-icon {
+    animation-delay: 0.4s;
+}
+
+.service-card:nth-child(4) .service-icon {
+    animation-delay: 0.1s;
+}
+
+.service-card:nth-child(5) .service-icon {
+    animation-delay: 0.3s;
+}
+
+.service-card:nth-child(6) .service-icon {
+    animation-delay: 0.5s;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Project Grid Items Animation */
+.project-grid {
+    --stagger-delay: 0.08s;
+}
+
+.project-grid > * {
+    animation: scaleIn 0.7s cubic-bezier(0.36, 0, 0.66, -0.56) backwards;
+}
+
+.project-grid > :nth-child(1) {
+    animation-delay: calc(var(--stagger-delay) * 0);
+}
+
+.project-grid > :nth-child(2) {
+    animation-delay: calc(var(--stagger-delay) * 1);
+}
+
+.project-grid > :nth-child(3) {
+    animation-delay: calc(var(--stagger-delay) * 2);
+}
+
+.project-grid > :nth-child(4) {
+    animation-delay: calc(var(--stagger-delay) * 3);
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Image Hover Animations */
+.marquee-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.marquee-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(212, 175, 55, 0.1);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.marquee-item:hover::before {
+    opacity: 1;
+}
+
+/* Section Head Animation */
+.section-head {
+    animation: sectionHeadFade 0.8s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+}
+
+@keyframes sectionHeadFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* About Metrics Pulse */
+.about-metric {
+    animation: metricPulse 2s cubic-bezier(0.4, 0.1, 0.4, 0.9) infinite;
+}
+
+.about-metric:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.about-metric:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.about-metric:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes metricPulse {
+    0%, 100% {
+        border-color: rgba(229, 193, 88, 0.28);
+    }
+    50% {
+        border-color: rgba(229, 193, 88, 0.6);
+    }
+}
+
+/* About Philosophy Photo Animation */
+.about-philosophy-photo {
+    animation: photoSlideIn 0.8s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+}
+
+.about-block-philosophy .about-philosophy-photo:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.about-block-philosophy .about-philosophy-photo:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.about-block-philosophy .about-philosophy-photo:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.about-block-philosophy .about-philosophy-photo:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes photoSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Text Link Animation */
+a:not(.btn) {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+a:not(.btn)::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+a:not(.btn):hover::after {
+    width: 100%;
+}
+
+/* About Block Animation */
+.about-block {
+    animation: blockSlideIn 0.8s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+}
+
+.about-block-intro {
+    animation-delay: 0.1s;
+}
+
+.about-block-philosophy {
+    animation-delay: 0.2s;
+}
+
+.about-block-values {
+    animation-delay: 0.3s;
+}
+
+.about-block-studio {
+    animation-delay: 0.4s;
+}
+
+@keyframes blockSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Smooth Hover Scale for Cards */
+.service-card-link:hover .service-card {
+    animation: none;
+}
+
+/* Text Fade In on Scroll */
+h1, h2, h3 {
+    animation: headingFadeIn 0.9s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+}
+
+@keyframes headingFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .app-shell {
         animation: none;
         opacity: 1;
+    }
+    
+    .service-card,
+    .btn::before,
+    .service-icon,
+    .project-grid > *,
+    .section-head,
+    .about-metric,
+    .about-philosophy-photo,
+    .about-block,
+    h1, h2, h3 {
+        animation: none !important;
     }
 }
 

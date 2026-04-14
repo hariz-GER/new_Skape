@@ -29,7 +29,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.65;
-  cursor: none;
+  /* cursor: none; */
 }
 
 img {
@@ -566,7 +566,8 @@ p {
   left: 0;
   pointer-events: none;
   z-index: 120;
-  transform: translate3d(-100px, -100px, 0);
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .cursor-dot {
@@ -574,8 +575,6 @@ p {
   height: 8px;
   border-radius: 50%;
   background: var(--gold-soft);
-  margin-left: -4px;
-  margin-top: -4px;
 }
 
 .cursor-ring {
@@ -583,17 +582,13 @@ p {
   height: 40px;
   border-radius: 50%;
   border: 1px solid var(--gold);
-  margin-left: -20px;
-  margin-top: -20px;
-  transition: transform 0.1s ease, width var(--transition), height var(--transition), border-color var(--transition);
+  transition: opacity 0.2s ease, transform 0.1s ease, width var(--transition), height var(--transition), border-color var(--transition);
   background: transparent;
 }
 
 .cursor-ring.cursor-hover {
   width: 64px;
   height: 64px;
-  margin-left: -32px;
-  margin-top: -32px;
   background: var(--gold-glow);
   border-color: transparent;
 }
