@@ -289,6 +289,16 @@ export default function Page() {
       ring.classList.remove('is-hover');
     };
 
+    const onMouseDown = () => {
+      cursor.classList.add('is-pressed');
+      ring.classList.add('is-pressed');
+    };
+
+    const onMouseUp = () => {
+      cursor.classList.remove('is-pressed');
+      ring.classList.remove('is-pressed');
+    };
+
     const animate = () => {
       ringX += (targetX - ringX) * 0.18;
       ringY += (targetY - ringY) * 0.18;
@@ -302,12 +312,16 @@ export default function Page() {
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseover', onPointerOver);
     document.addEventListener('mouseout', onPointerOut);
+    document.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mouseup', onMouseUp);
 
     return () => {
       window.cancelAnimationFrame(frame);
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseover', onPointerOver);
       document.removeEventListener('mouseout', onPointerOut);
+      document.removeEventListener('mousedown', onMouseDown);
+      document.removeEventListener('mouseup', onMouseUp);
     };
   }, []);
 
