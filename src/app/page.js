@@ -164,6 +164,7 @@ const processSteps = [
 
 const interactiveSelector =
   'a, button, .nd-project-card, .nd-service-card, input, textarea, label';
+const INTRO_LOADER_HOLD_MS = 3600;
 
 export default function Page() {
   const [loaderHidden, setLoaderHidden] = useState(false);
@@ -187,7 +188,7 @@ export default function Page() {
 
   useEffect(() => {
     const onLoad = () => {
-      window.setTimeout(() => setLoaderHidden(true), 2300);
+      window.setTimeout(() => setLoaderHidden(true), INTRO_LOADER_HOLD_MS);
     };
 
     if (document.readyState === 'complete') {
