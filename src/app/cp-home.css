@@ -213,8 +213,11 @@
   font-weight: 300;
   letter-spacing: 0.3em;
   color: var(--nd-white);
+  display: inline-block;
   overflow: hidden;
   white-space: nowrap;
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
   animation: nd-type-in 1.5s steps(5) forwards, nd-fade-up 0.5s ease 2s both;
 }
 
@@ -239,11 +242,13 @@
 
 @keyframes nd-type-in {
   from {
-    width: 0;
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
   }
 
   to {
-    width: 100%;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
   }
 }
 
@@ -1514,5 +1519,10 @@
 
   .nd-loader-line {
     width: 200px;
+  }
+
+  .nd-loader-logo {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
   }
 }
