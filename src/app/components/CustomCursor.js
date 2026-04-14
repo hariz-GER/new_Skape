@@ -6,75 +6,85 @@ export default function CustomCursor() {
     useEffect(() => {
         const dot = document.getElementById('cursorDot');
         const ring = document.getElementById('cursorRing');
-        if (!dot || !ring) return;
+        const trail = document.getElementById('cursorTrail');
+        
+        if (!dot || !ring || !trail) return;
 
-        let x = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
-        let y = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
-        let rx = x;
-        let ry = y;
+        let x = 0;
+        let y = 0;
+        let rx = 0;
+        let ry = 0;
+        let trailX = 0;
+        let trailY = 0;
+        let isMoving = false;
+        let moveTimeout;
 
-        // Initialize cursor position to current mouse position
+        // Show cursor immediately on page load
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+        trail.style.opacity = '0.4';
+
         const onMove = (event) => {
             x = event.clientX;
             y = event.clientY;
-            dot.style.transform = `translate3d(calc(${x}px - 50%), calc(${y}px - 50%), 0)`;
+            
+            // Update dot position with proper centering
+            dot.style.left = x + 'px';
+            dot.style.top = y + 'px';
+
+            // Add movement class for animation
+            dot.classList.add('moving');
+            clearTimeout(moveTimeout);
+            moveTimeout = setTimeout(() => {
+                dot.classList.remove('moving');
+            }, 100);
+
+            isMoving = true;
         };
 
-        const onEnterInteractive = () => ring.classList.add('cursor-hover');
-        const onLeaveInteractive = () => ring.classList.remove('cursor-hover');
+        const onEnterInteractive = (e) => {
+            ring.classList.add('cursor-hover');
+            dot.classList.add('cursor-hover');
+        };
+
+        const onLeaveInteractive = (e) => {
+            ring.classList.remove('cursor-hover');
+            dot.classList.remove('cursor-hover');
+        };
 
         const tick = () => {
-            rx += (x - rx) * 0.16;
-            ry += (y - ry) * 0.16;
-            ring.style.transform = `translate3d(calc(${rx}px - 50%), calc(${ry}px - 50%), 0)`;
+            // Ring follows with smooth easing
+            rx += (x - rx) * 0.2;
+            ry += (y - ry) * 0.2;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+
+            // Trail follows with more lag
+            trailX += (x - trailX) * 0.08;
+            trailY += (y - trailY) * 0.08;
+            trail.style.left = trailX + 'px';
+            trail.style.top = trailY + 'px';
+
             requestAnimationFrame(tick);
         };
 
         const interactiveSelector = 'a, button, .project-card, .service-card-link, [role="button"], input, textarea, select';
 
-        // Show cursor on first mousemove
-        const onFirstMove = (event) => {
-            dot.style.opacity = '1';
-            ring.style.opacity = '1';
-            document.removeEventListener('mousemove', onFirstMove);
-            document.addEventListener('mousemove', onMove);
-            x = event.clientX;
-            y = event.clientY;
-        };
+        // Add event listeners
+        document.addEventListener('mousemove', onMove);
+        
+        document.querySelectorAll(interactiveSelector).forEach((el) => {
+            el.addEventListener('mouseenter', onEnterInteractive);
+            el.addEventListener('mouseleave', onLeaveInteractive);
+        });
 
-        document.addEventListener('mousemove', onFirstMove);
-
-        // Handle mouse leaving window
-        const onMouseLeave = () => {
-            dot.style.opacity = '0';
-            ring.style.opacity = '0';
-        };
-
-        const onMouseEnter = () => {
-            dot.style.opacity = '1';
-            ring.style.opacity = '1';
-        };
-
-        document.addEventListener('mouseleave', onMouseLeave);
-        document.addEventListener('mouseenter', onMouseEnter);
-
-        // Add event listeners to interactive elements
-        const addListeners = () => {
-            document.querySelectorAll(interactiveSelector).forEach((el) => {
-                el.addEventListener('mouseenter', onEnterInteractive);
-                el.addEventListener('mouseleave', onLeaveInteractive);
-            });
-        };
-
-        addListeners();
+        // Start animation loop
         const animationId = requestAnimationFrame(tick);
 
         return () => {
             cancelAnimationFrame(animationId);
-            document.removeEventListener('mousemove', onFirstMove);
             document.removeEventListener('mousemove', onMove);
-            document.removeEventListener('mouseleave', onMouseLeave);
-            document.removeEventListener('mouseenter', onMouseEnter);
+            clearTimeout(moveTimeout);
             document.querySelectorAll(interactiveSelector).forEach((el) => {
                 el.removeEventListener('mouseenter', onEnterInteractive);
                 el.removeEventListener('mouseleave', onLeaveInteractive);
@@ -84,6 +94,7 @@ export default function CustomCursor() {
 
     return (
         <>
+            <div id="cursorTrail" className="cursor-trail" />
             <div id="cursorDot" className="cursor-dot" />
             <div id="cursorRing" className="cursor-ring" />
         </>
